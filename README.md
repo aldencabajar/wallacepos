@@ -120,3 +120,7 @@ To deploy WallacePOS on dokku:
 5. Access /installer/?install from the web browser to install the database schema & templates
 
 6. Login to the admin dashboard at /admin using credentials admin:admin & change the default passwords in Settings -> Staff & Admins!
+
+
+## RECREATE MY OWN INSTANCE
+Simply run `docker compose -f ./docker/docker-compose.yml up -d`

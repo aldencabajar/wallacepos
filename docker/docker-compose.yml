@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  db: 
+    image: mysql:8.0
+    secrets:
+      - mysqluser
+      - dbpass
+      - rootpass
+    environment:
+      MYSQL_DATABASE: posdb
+      MYSQL_USER_FILE: /run/secrets/mysqluser
+      MYSQL_PASSWORD_FILE: /run/secrets/dbpass
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/rootpass
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+  
+  webserver:
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: wallacepos
+    ports:
+      - "8080:80"  
+    links:
+      - db
+    depends_on:
+      - db
+
+volumes:
+  db:
+
+secrets:
+  mysqluser:
+    file: /tmp/mysqluser
+  dbpass:
+    file: /tmp/mysqlpass
+  rootpass:
+    file: /tmp/mysql_rootpass
+
+
+    
+
+
+
+    
