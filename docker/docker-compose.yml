@@ -7,6 +7,7 @@ services:
       - mysqluser
       - dbpass
       - rootpass
+    command: --sql_mode=""
     environment:
       MYSQL_DATABASE: posdb
       MYSQL_USER_FILE: /run/secrets/mysqluser
