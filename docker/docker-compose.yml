@@ -27,7 +27,7 @@ services:
       dockerfile: docker/Dockerfile
     image: wallacepos
     ports:
-      - "8080:80"  
+      - "80:80"  
     links:
       - db
     depends_on:
