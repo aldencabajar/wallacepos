@@ -35,6 +35,8 @@ services:
 
 volumes:
   db:
+    external: true
+    name: docker_db
 
 secrets:
   mysqluser:
